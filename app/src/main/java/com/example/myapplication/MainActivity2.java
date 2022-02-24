@@ -14,8 +14,8 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        Bundle buf = getIntent().getExtras();
-        ArrayList list = (ArrayList) buf.get("listAll"); //список list с которым можно работать
+        //Bundle buf = getIntent().getExtras();
+        //ArrayList list = (ArrayList) buf.get("listAll"); //список list с которым можно работать
 
     }
 }
