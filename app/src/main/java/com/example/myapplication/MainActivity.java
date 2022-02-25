@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,12 +23,15 @@ public class MainActivity extends AppCompatActivity {
         Double mark_math;
         Double mark_infor;
         Double mark_physics;
+        Double mark_average;
 
         public Student(String fio, Double mark_math, Double mark_infor, Double mark_physics) {
             this.fio = fio;
             this.mark_math = mark_math;
             this.mark_infor = mark_infor;
             this.mark_physics = mark_physics;
+
+            this.mark_average = (mark_math + mark_infor + mark_physics) / 3;
         }
 
         public String getFio() {
@@ -45,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
         public Double getMark_physics() {
             return mark_physics;
         }
-
-
+        public Double getMark_average() {
+            return mark_average;
+        }
     }
 
     EditText fio,math,info,physics;
@@ -66,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        LinkedList list = new LinkedList();
         //ArrayList list = new ArrayList();
+
         ListView listView = findViewById(R.id.listView);
         ArrayList<Student> students = new ArrayList<>();
         ArrayAdapter<Student> studentArrayAdapter =
@@ -85,11 +91,16 @@ public class MainActivity extends AppCompatActivity {
                         TextView mark_math = (TextView) convertView.findViewById(R.id.tv_mark_math);
                         TextView mark_informatic = (TextView) convertView.findViewById(R.id.tv_mark_informatic);
                         TextView mark_physics = (TextView) convertView.findViewById(R.id.tv_mark_physics);
+                        TextView mark_average = (TextView) convertView.findViewById(R.id.tv_average_mark);
 
                         FIO.setText(currentStudent.getFio());
                         mark_math.setText(currentStudent.getMark_math().toString());
                         mark_informatic.setText(currentStudent.getMark_infor().toString());
                         mark_physics.setText(currentStudent.getMark_physics().toString());
+
+                        String averageFormatted = String.format("%2.1f", currentStudent.getMark_average()).replace(',', '.');;
+                        mark_average.setText(averageFormatted);
+
                         return convertView;
                     }
                 };
